@@ -256,6 +256,16 @@
       object-fit: cover;
       display: block;
     }
+    @media (max-width: 760px) {
+      .gallery-item {
+        aspect-ratio: unset;
+        height: auto;
+      }
+      .gallery-item img {
+        height: auto;
+        object-fit: unset;
+      }
+    }
 
     /* ── LIGHTBOX ── */
     .lightbox {
