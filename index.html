@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VW Up 1.0 MPI 44 kW – 2015 – K prodeji</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f3;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --accent: #1a3a5c;
+      --accent2: #2563a8;
+      --border: #e2e2e2;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      opacity: .7;
+    }
+    header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    header .badge {
+      margin-left: auto;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.13);
+    }
+    .hero img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .hero:hover img { transform: scale(1.015); }
+    .hero .hero-label {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      font-size: .78rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── TWO-COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; }
+      .hero img { height: 260px; }
+    }
+
+    /* ── SPECS ── */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      padding: 28px;
+    }
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    @media (max-width: 500px) {
+      .specs-grid { grid-template-columns: 1fr; }
+    }
+    .spec-item {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .spec-item:nth-last-child(-n+2) { border-bottom: none; }
+    .spec-item .label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .spec-item .value {
+      font-size: .97rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights {
+      margin-top: 24px;
+    }
+    .highlights h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+    .highlights ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .highlights li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .95rem;
+    }
+    .highlights li::before {
+      content: '✓';
+      color: #2ca05a;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── PRICE BOX ── */
+    .price-box {
+      background: var(--accent);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+    }
+    .price-box .label-s {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      opacity: .75;
+      margin-bottom: 8px;
+    }
+    .price-box .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .price-box .note {
+      font-size: .8rem;
+      opacity: .65;
+      margin-top: 6px;
+    }
+    .price-box .cta {
+      display: block;
+      margin-top: 20px;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 11px 0;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .price-box .cta:hover { background: #e8eef7; }
+
+    /* ── GALLERY ── */
+    .gallery-section { margin-top: 36px; }
+    .gallery-section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: #ddd;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.6);
+    }
+    .lb-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-prev, .lb-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      padding: 14px 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background .2s;
+      line-height: 1;
+    }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.28); }
+    .lb-prev { left: 14px; }
+    .lb-next { right: 14px; }
+    .lb-counter {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.7);
+      font-size: .85rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: .82rem;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">VW</span>
+  <h1>Volkswagen Up! 1.0 MPI</h1>
+  <span class="badge">K prodeji</span>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero" onclick="openLightbox(0)">
+    <img src="1.jpg" alt="VW Up – hlavní foto">
+    <span class="hero-label">Klikem zvětšíte</span>
+  </div>
+
+  <!-- TWO COL -->
+  <div class="two-col">
+
+    <!-- LEFT: specs + highlights -->
+    <div>
+      <div class="card">
+        <h2>Technické parametry</h2>
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="label">Značka / Model</div>
+            <div class="value">Volkswagen Up!</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Rok výroby</div>
+            <div class="value">2015</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Motor</div>
+            <div class="value">1.0 MPI – 44 kW / 60 PS</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Palivo</div>
+            <div class="value">Benzín</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Převodovka</div>
+            <div class="value">Manuál, 5 stupňů</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Karoserie</div>
+            <div class="value">Hatchback, 5 dveří</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Barva</div>
+            <div class="value">Bílá</div>
+          </div>
+          <div class="spec-item">
+            <div class="label">Najeté km</div>
+            <div class="value">99 350 km</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlights card" style="margin-top:20px;">
+        <h2>Stav a servis</h2>
+        <ul>
+          <li>Nová baterie – září 2025</li>
+          <li>Kompletně nové brzdy před cca ¼ rokem (kotouče + destičky, přední i zadní)</li>
+          <li>Pravidelně servisováno</li>
+          <li>Vozidlo v dobrém technickém stavu</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: price -->
+    <div>
+      <div class="card">
+        <h2>Rychlý přehled</h2>
+        <div class="spec-item" style="padding-top:0;">
+          <div class="label">Stáří vozu</div>
+          <div class="value">cca 11 let</div>
+        </div>
+        <div class="spec-item">
+          <div class="label">Průměrný roční nájezd</div>
+          <div class="value">~9 000 km</div>
+        </div>
+        <div class="spec-item" style="border-bottom:none;">
+          <div class="label">Emise CO₂ (WLTP)</div>
+          <div class="value">~103 g/km</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /two-col -->
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <h2>Fotogalerie</h2>
+    <div class="gallery" id="gallery"></div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  VW Up! 1.0 MPI 44 kW &nbsp;·&nbsp; Rok výroby 2015 &nbsp;·&nbsp; 99 350 km
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" onclick="closeLightbox()">&#215;</span>
+  <button class="lb-prev" onclick="stepLightbox(-1)">&#8249;</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-next" onclick="stepLightbox(1)">&#8250;</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<script>
+  const photos = [
+    "1.jpg",
+    "DSC03044.jpg","DSC03049.jpg","DSC03053.jpg","DSC03054.jpg",
+    "DSC03056.jpg","DSC03059.jpg","DSC03060.jpg","DSC03062.jpg",
+    "DSC03063.jpg","DSC03064.jpg","DSC03065.jpg"
+  ];
+
+  let current = 0;
+
+  // Build gallery (skip 1.jpg – already shown as hero)
+  const gallery = document.getElementById('gallery');
+  photos.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.onclick = () => openLightbox(i);
+    div.innerHTML = `<img src="${src}" alt="Foto ${i+1}" loading="lazy">`;
+    gallery.appendChild(div);
+  });
+
+  function openLightbox(index) {
+    current = index;
+    document.getElementById('lb-img').src = photos[current];
+    document.getElementById('lb-counter').textContent = `${current + 1} / ${photos.length}`;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function stepLightbox(dir) {
+    current = (current + dir + photos.length) % photos.length;
+    document.getElementById('lb-img').src = photos[current];
+    document.getElementById('lb-counter').textContent = `${current + 1} / ${photos.length}`;
+  }
+
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+</script>
+
+</body>
+</html>
